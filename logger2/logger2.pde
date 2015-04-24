@@ -7,6 +7,9 @@ int num=0;
 color col[] = new color[3]; 
 boolean flag[] = new boolean[3];
 
+ float a; 
+ float F = 10; // cutoff frequency
+
 PrintWriter pw;
 //--------------------------------------------------------------------------------------------------
 void setup() {
@@ -17,7 +20,7 @@ void setup() {
   myPort.bufferUntil('\n');
   delay(200);
   initGraph();
-  String title = String.valueOf(year()) + 'y' + String.valueOf(month()) + 'm' + String.valueOf(day()) + 'd' + String.valueOf(hour()) + 'h' + String.valueOf(minute()) + 'm' + String.valueOf(second()) + "s_heartbeat_L.txt";
+  String title = String.valueOf(year()) + 'y' + String.valueOf(month()) + 'm' + String.valueOf(day()) + 'd' + String.valueOf(hour()) + 'h' + String.valueOf(minute()) + 'm' + String.valueOf(second()) + "Logger2.txt";
   pw = createWriter(title);
 }
  //--------------------------------------draw------------------------------------------------------------
@@ -83,8 +86,6 @@ void drawHanrei(String s,color c, int h){
 }
  //--------------------------------------------------------------------------------------------------
  
- float a; // LPF no omomiduke
- float F = 100; // cutoff frequency 2.8 -> 15 
 void serialEvent(Serial p) { 
   try{
   if(myPort.available()>1){
