@@ -13,5 +13,5 @@ void loop() {
     buff[i]=String(analogRead(pin+i));
   }
   Serial.print(String(micros())+","+buff[0]+","+buff[1]+","+buff[2]+"\n");
-  delayMicroseconds(3500);
+  delayMicroseconds(8500);
 }
