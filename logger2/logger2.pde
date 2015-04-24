@@ -20,7 +20,7 @@ void setup() {
   myPort.bufferUntil('\n');
   delay(200);
   initGraph();
-  String title = String.valueOf(year()) + 'y' + String.valueOf(month()) + 'm' + String.valueOf(day()) + 'd' + String.valueOf(hour()) + 'h' + String.valueOf(minute()) + 'm' + String.valueOf(second()) + "Logger2.txt";
+  String title = String.valueOf(year()) + '_' + String.valueOf(month()) + '_' + String.valueOf(day()) + '_' + String.valueOf(hour()) + '_' + String.valueOf(minute()) + '_' + String.valueOf(second()) + "_Logger2.txt";
   pw = createWriter(title);
 }
  //--------------------------------------draw------------------------------------------------------------
