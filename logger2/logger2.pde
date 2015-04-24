@@ -6,6 +6,8 @@ int past[][][] = new int[3][P][2];
 int num=0;
 color col[] = new color[3]; 
 boolean flag[] = new boolean[3];
+float txbuff=-1;
+float tybuff=-1;
 
  float a; 
  float F = 10; // cutoff frequency
@@ -37,8 +39,13 @@ void drawPoints(int[][] p, color c){
     float tx = (p[0][1]-p[j][1])*0.001*0.25;
     float ty = map(p[j][0], 0, 1023, height, 0);
     stroke(c);
-    strokeWeight(2);
-    if(tx<=width)point(tx,ty);
+    strokeWeight(1);
+    if(tx<=width){
+      point(tx,ty);
+      if(txbuff>=0&&j!=0&&(txbuff-tx)<5)line(txbuff,tybuff,tx,ty);
+      }
+    txbuff = tx;
+    tybuff = ty;
     }
 }
  
@@ -80,9 +87,7 @@ void drawHanrei(String s,color c, int h){
   textSize(16);
   text(s,950,h+8);
   stroke(c);
-  for(int i=0;i<5;i++){
-    point(890+i*10,h);
-  }
+    line(890,h,940,h);
 }
  //--------------------------------------------------------------------------------------------------
  
@@ -117,7 +122,6 @@ void queueData(int[][] p,int pin){
     num++;
 }
 
-//-----------pursedata
 boolean checkData(String s){
   String[] data = splitTokens(trim(s),",");
   if(data[0]==null){return false;}
@@ -126,6 +130,7 @@ boolean checkData(String s){
   }
   return true;
 }
+//-----------pursedata
 void purseData(String s){
   String[] data = splitTokens(trim(s),",");
   for(int i=0;i<4;i++){
