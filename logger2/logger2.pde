@@ -6,6 +6,7 @@ int past[][][] = new int[3][P][2];
 int num=0;
 color col[] = new color[3]; 
 boolean flag[] = new boolean[3];
+boolean timeflag = true;
 float txbuff=-1;
 float tybuff=-1;
 
@@ -67,6 +68,7 @@ void initGraph() {
 }
 
 void drawGraphPresets(){
+  textAlign(LEFT);
      stroke(0);
      strokeWeight(1);
       line(250,0,250,height);
@@ -79,7 +81,9 @@ void drawGraphPresets(){
      
   fill(0);
   textSize(16);
-  text((int(value[0])/1000000.0),width-100,height-20);
+  textAlign(RIGHT);
+  text((int(value[0])/1000000.0),width-15,height-35);
+  if(timeflag)text(String.valueOf(year()) + '/' + String.valueOf(month()) + '/' + String.valueOf(day()) + ' ' + String.valueOf(hour()) + ':' + String.valueOf(minute()) + ':' + String.valueOf(second()),width-15,height-10);
 }
 
 void drawHanrei(String s,color c, int h){
@@ -159,6 +163,10 @@ void keyPressed() {
    if (key == '3') { 
       flag[2] = !flag[2];
     println("A2"+flag[2]);
+  }
+  if (key == 't') { 
+      timeflag = !timeflag;
+    println("t"+timeflag);
   }
   
   if(keyCode==ENTER){
