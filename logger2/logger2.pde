@@ -1,8 +1,8 @@
 import processing.serial.*;
 Serial myPort;
 int P = 1000;
-int value[] = new int[4];//value[0]..time  value[1-3]..A0-A2
-int past[][][] = new int[3][P][2];
+long value[] = new long[4];//value[0]..time  value[1-3]..A0-A2
+long past[][][] = new long[3][P][2];
 int num=0;
 color col[] = new color[3]; 
 boolean flag[] = new boolean[3];
@@ -35,7 +35,7 @@ void draw() {
     drawGraphPresets();
 }
  //--------------------------------------drawpoints------------------------------------------------------------
-void drawPoints(int[][] p, color c){
+void drawPoints(long[][] p, color c){
     for(int j=0;j<P;j++){
     float tx = (p[0][1]-p[j][1])*0.001*0.25;
     float ty = map(p[j][0], 0, 1023, height, 0);
@@ -115,7 +115,7 @@ void serialEvent(Serial p) {
   }
 }
 //--------------------------------queueData
-void queueData(int[][] p,int pin){
+void queueData(long[][] p,int pin){
     for(int i=P-1;i>0;i--){//imamade no data zurasu
          p[i][0]=p[i-1][0]; //y
          p[i][1]=p[i-1][1]; //x
